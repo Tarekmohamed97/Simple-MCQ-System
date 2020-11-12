@@ -92,19 +92,19 @@ function Questions({questions, fetchQuestions_action}) {
                     <div className = "questionSection__container" key = {currentQuestion}>
                         <form id = "quizForm">
                             <label className = "questionBody__section">{shuffledQuestions[currentQuestion].questionBody}</label>
-                            <div className = "singleOption__section">
+                            <div data-aos = "fade-left" className = "singleOption__section">
                                 <input name = "answer1" id = "answer1" type= "radio" value = {shuffledQuestions[currentQuestion].answer1} />
                                 <label htmlFor = {shuffledQuestions[currentQuestion].answer1}>{shuffledQuestions[currentQuestion].answer1}</label>
                             </div>
-                            <div className = "singleOption__section">
+                            <div data-aos = "fade-left" className = "singleOption__section">
                                 <input name = "answer2" id = "answer2" type= "radio" value = {shuffledQuestions[currentQuestion].answer2} />
                                 <label htmlFor = {shuffledQuestions[currentQuestion].answer2}>{shuffledQuestions[currentQuestion].answer2}</label>
                             </div>
-                            <div className = "singleOption__section">
+                            <div data-aos = "fade-left" className = "singleOption__section">
                                 <input name = "answer3" id = "answer3" type= "radio" value = {shuffledQuestions[currentQuestion].answer3} />
                                 <label htmlFor = {shuffledQuestions[currentQuestion].answer3}>{shuffledQuestions[currentQuestion].answer3}</label>
                             </div>
-                            <div className = "singleOption__section">
+                            <div data-aos = "fade-left" className = "singleOption__section">
                                 <input name = "answer4" id = "answer4" type= "radio" value = {shuffledQuestions[currentQuestion].answer4} />
                                 <label htmlFor = {shuffledQuestions[currentQuestion].answer4}>{shuffledQuestions[currentQuestion].answer4}</label>
                             </div>
@@ -115,6 +115,7 @@ function Questions({questions, fetchQuestions_action}) {
                                          e.preventDefault()
                                          setShowScore(true)
                                         }}
+                                         data-aos = 'fade-up'
                                          className = "quizButtons__section"
                                          >ShowScore</button>
                                     </div>
@@ -122,6 +123,7 @@ function Questions({questions, fetchQuestions_action}) {
                                         <button onClick = {(e) =>
                                         handleScore(e, currentQuestion)
                                         }
+                                        data-aos = 'fade-up'
                                         className = "quizButtons__section"
                                         >Next</button>
                                     </div>
