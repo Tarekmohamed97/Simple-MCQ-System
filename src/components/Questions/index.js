@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import { fetchQuestions_action } from '../../redux/actions';
 import {connect} from 'react-redux';
-import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import AOS from 'aos';
+import "aos/dist/aos.css";
 import './questions.css'
 
 
@@ -31,7 +33,10 @@ function Questions({questions, fetchQuestions_action}) {
 
     useEffect(() => {
         fetchQuestions_action();
-        setFlag(true)
+        setFlag(true);
+        AOS.init({
+            duration : 1000
+          });
     }, [])
 
 
