@@ -1,0 +1,35 @@
+body{
+    background-color: rgb(231, 213, 178);
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.inputContainer{
+    margin-top: 7rem;
+}
+
+.inputContainer input{
+    border-radius: 5px;
+    padding: .5rem;
+}
+
+.enrolButton{
+    margin-top: .5rem;
+    padding: .5rem;
+    background-color: rgb(85, 63, 19);
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+.enrolButton:hover{
+    background-color: rgb(109, 96, 72);
+    cursor: pointer;
+    transition: .7s ease-in-out;
+}
