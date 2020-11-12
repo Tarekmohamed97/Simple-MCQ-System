@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import { fetchQuestions_action } from '../../redux/actions';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import { useHistory } from 'react-router-dom'
+import './questions.css'
 
 
 function Questions({questions, fetchQuestions_action}) {
@@ -10,6 +12,7 @@ function Questions({questions, fetchQuestions_action}) {
     let [shuffledQuestions, setShuffledQuestions] =  useState([]);
     const [flag, setFlag] = useState(true);
     const [showScore, setShowScore] = useState(false);
+    const history = useHistory();
 
 
     const shuffleArray = (array) => {
@@ -80,24 +83,24 @@ function Questions({questions, fetchQuestions_action}) {
     return (
         <div>
             {
-                shuffledQuestions.length !== 0? (
-                    <div key = {currentQuestion}>
+                !showScore && shuffledQuestions.length !== 0? (
+                    <div className = "questionSection__container" key = {currentQuestion}>
                         <form id = "quizForm">
-                            <label>{shuffledQuestions[currentQuestion].questionBody}</label>
-                            <div>
-                                <input name = "answer1" type= "radio" value = {shuffledQuestions[currentQuestion].answer1} />
+                            <label className = "questionBody__section">{shuffledQuestions[currentQuestion].questionBody}</label>
+                            <div className = "singleOption__section">
+                                <input name = "answer1" id = "answer1" type= "radio" value = {shuffledQuestions[currentQuestion].answer1} />
                                 <label htmlFor = {shuffledQuestions[currentQuestion].answer1}>{shuffledQuestions[currentQuestion].answer1}</label>
                             </div>
-                            <div>
-                                <input name = "answer2" type= "radio" value = {shuffledQuestions[currentQuestion].answer2} />
+                            <div className = "singleOption__section">
+                                <input name = "answer2" id = "answer2" type= "radio" value = {shuffledQuestions[currentQuestion].answer2} />
                                 <label htmlFor = {shuffledQuestions[currentQuestion].answer2}>{shuffledQuestions[currentQuestion].answer2}</label>
                             </div>
-                            <div>
-                                <input name = "answer3" type= "radio" value = {shuffledQuestions[currentQuestion].answer3} />
+                            <div className = "singleOption__section">
+                                <input name = "answer3" id = "answer3" type= "radio" value = {shuffledQuestions[currentQuestion].answer3} />
                                 <label htmlFor = {shuffledQuestions[currentQuestion].answer3}>{shuffledQuestions[currentQuestion].answer3}</label>
                             </div>
-                            <div>
-                                <input name = "answer4" type= "radio" value = {shuffledQuestions[currentQuestion].answer4} />
+                            <div className = "singleOption__section">
+                                <input name = "answer4" id = "answer4" type= "radio" value = {shuffledQuestions[currentQuestion].answer4} />
                                 <label htmlFor = {shuffledQuestions[currentQuestion].answer4}>{shuffledQuestions[currentQuestion].answer4}</label>
                             </div>
                             {
@@ -105,24 +108,30 @@ function Questions({questions, fetchQuestions_action}) {
                                     <div>
                                         <button onClick = {(e) =>{
                                          e.preventDefault()
-                                         setShowScore(true)}}>ShowScore</button>
+                                         setShowScore(true)
+                                        }}
+                                         className = "quizButtons__section"
+                                         >ShowScore</button>
                                     </div>
                                 ) : <div>
                                         <button onClick = {(e) =>
-                                        handleScore(e, currentQuestion)}>Next</button>
+                                        handleScore(e, currentQuestion)
+                                        }
+                                        className = "quizButtons__section"
+                                        >Next</button>
                                     </div>
                             }
                         </form>
                     </div>
-                ) : null
+                ) : (
+                    <div className = "userScore__section">
+                        <h3 data-aos = "fade-down">Your Score is {userScore}</h3>
+                        <button data-aos = "fade-up" className = "quizButtons__section" onClick = {() => history.push('/')}>
+                            Try Again
+                        </button>
+                    </div>
+                )
             }
-            <div>
-                {
-                    showScore? (
-                        <h3>{userScore}</h3>
-                    ) : null
-                }
-            </div>
         </div>
     )
 }
